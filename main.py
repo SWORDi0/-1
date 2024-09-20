@@ -1,49 +1,36 @@
-import math
-def int_fract(dec_num):
-    int_part = "" #целая часть
-    fract_part = "" #дробная часть
-    flag = False
-    for i in dec_num:
-        if i ==",":
-            flag = True
-            continue
-        if flag == False:
-            int_part = int_part + i
-        else:
-            fract_part = fract_part + i
-    return str(int_conv(int_part)) + "," + str(fract_conv(fract_part))
 
-def int_conv(int_part):
-    lenOfint_part = len(int_part)
-    sum = 0
-    power = 0
-    cor = 1
-    result = 0
-    while power < lenOfint_part:
-        number = int(int_part[power])
-        sum = number * (2**(lenOfint_part - cor))
-        power +=1
-        cor +=1
-        result = result + sum
-    return result
+dict = {
 
-def fract_conv(fract_part):
-    lenOffract_part = len(fract_part)
-    sum = 0
-    power = 0
-    cor = -1
-    result = 0
-    while power < lenOffract_part:
-        number = int(fract_part[power])
-        # print(number)
-        sum = number * (2**(cor))
-        # print(sum)
-        power +=1
-        cor -=1
-        result = result + sum
-    result = str(result)
-    return result[2:]
+    'Х': '11010101',
+    'в': '11100010',
+    'а': '11100000',
+    'д': '11100100',
+    'е': '11100101',
+    'ж': '11100110',
+    'з': '11100111',
+    'и': '11101000',
+    'к': '11101010',
+    'о': '11101110',
+    'й': '11101001',
+    'р': '11110000',
+    'с': '11110001',
+    'т': '11110010',
+    'у': '11110011',
+    'х': '11110101',
+    'ш': '11111000',
+    'ь': '11111100',
+    ' ': '10100000',
+    ',': '10000010',
+    '.': '00101110',
+    'э': '11111101',
+    '-': '10010111'
 
-if __name__ == "__main__":
-    dec_num = str(input("введите целое число: "))
-    print(int_fract(dec_num))
+}
+
+def ASCII(str):
+    code = ""
+    for i in str:
+        code = code + " " + dict[i]
+    return code
+
+print(ASCII("Худший из всех страхов - это страх жить."))
