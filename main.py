@@ -1,36 +1,29 @@
+a = [["a", 5, ""], ["b", 2, ""], ["c", 1, ""], ["d", 1, ""]]
 
-dict = {
 
-    'Х': '11010101',
-    'в': '11100010',
-    'а': '11100000',
-    'д': '11100100',
-    'е': '11100101',
-    'ж': '11100110',
-    'з': '11100111',
-    'и': '11101000',
-    'к': '11101010',
-    'о': '11101110',
-    'й': '11101001',
-    'р': '11110000',
-    'с': '11110001',
-    'т': '11110010',
-    'у': '11110011',
-    'х': '11110101',
-    'ш': '11111000',
-    'ь': '11111100',
-    ' ': '10100000',
-    ',': '10000010',
-    '.': '00101110',
-    'э': '11111101',
-    '-': '10010111'
+def ShannonFano(probability):
+    summ = 0
+    for i in probability:
+        summ = summ + i[1]
 
-}
+    group = summ / 2
+    index = 0
+    group1 = []
+    group2 = []
 
-def ASCII(str):
-    code = ""
-    for i in str:
-        code = code + " " + dict[i]
-    return code
+    for i in probability:
+        if index < group:
+            i[2] += '1'
+            group1.append(i)
+            index += i[1]
+        else:
+            i[2] += '0'
+            group2.append(i)
+    if len(group1) != 1:
+        ShannonFano(group1)
+    if len(group2) != 1:
+        ShannonFano(group2)
 
-print(ASCII("Худший из всех страхов - это страх жить."))
+    return probability
+if __name__ == "__main__":
+    print(ShannonFano(a))
